@@ -12,6 +12,10 @@ class Item extends Model {
       }
     );
   }
+
+  static associate(models) {
+    this.hasOne(models.ItemSurvivor, { foreignKey: 'item_id' });
+  }
 }
 
 export default Item;

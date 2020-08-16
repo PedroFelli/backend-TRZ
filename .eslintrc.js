@@ -18,6 +18,7 @@ module.exports = {
     'prettier/prettier': 'error',
     'class-methods-use-this': 'off',
     'no-param-reassingn': 'off',
+    'eslint no-param-reassign': 'off',
     camelcase: 'off',
     'linebreak-style': 'off',
     'no-unused-vars': ['error', { argsIgnorePattern: 'next' }],

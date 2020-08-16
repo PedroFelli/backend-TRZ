@@ -9,8 +9,8 @@ class ItemRepository {
     return this.Item.create({ name, value });
   }
 
-  async findByName(name) {
-    return this.Item.findOne({ name });
+  async findBySurvivorId(survivor_id) {
+    return this.Item.findOne({ where: { survivor_id } });
   }
 }
 

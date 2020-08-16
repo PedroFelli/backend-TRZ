@@ -1,25 +1,51 @@
+import Sequelize from 'sequelize';
 import SurvivorRepository from '../repositories/SurvivorRepository';
-import ItemRepository from '../repositories/ItemRepository';
+import ItemSurvivorRepository from '../repositories/ItemSurvivorRepository';
+
+import databaseConfig from '../../config/database';
 
 class CreateSurvivorService {
-  async execute({ name, age, gender, latitude, longitude, item }) {
+  async execute({ name, age, gender, latitude, longitude, items }) {
     const checkName = await SurvivorRepository.findByName(name);
 
-    // if (checkName) {
-    //   throw Error('Name alredy used!');
-    // }
+    if (checkName) {
+      throw Error('Name alredy used!');
+    }
 
-    const createdItem = await ItemRepository.store(item);
+    const sequelize = new Sequelize(databaseConfig);
 
-    const survivor = await SurvivorRepository.store({
-      name,
-      age,
-      gender,
-      latitude,
-      longitude,
-    });
+    const t = await sequelize.transaction();
+    try {
+      const survivor = await SurvivorRepository.store(
+        {
+          name,
+          age,
+          gender,
+          longitude,
+          latitude,
+        },
+        { transaction: t }
+      );
 
-    return { createdItem, survivor };
+      await Promise.all(
+        items.map((item) =>
+          ItemSurvivorRepository.store(
+            {
+              item_id: item.item_id,
+              quantity: item.quantity,
+              survivor_id: survivor.id,
+            },
+            { transaction: t }
+          )
+        )
+      );
+
+      await t.commit();
+    } catch (err) {
+      await t.rollback();
+    }
+
+    return true;
   }
 }
 

@@ -6,11 +6,21 @@ class SurvivorRepository {
   }
 
   async store({ name, age, gender, latitude, longitude }) {
-    return this.Survivor.create({ name, age, gender, latitude, longitude });
+    const lonlat = { type: 'Point', coordinates: [longitude, latitude] };
+
+    return this.Survivor.create({ name, age, gender, lonlat });
+  }
+
+  async findAll() {
+    return this.Survivor.findAll();
   }
 
   async findByName(name) {
-    return this.Survivor.findOne({ name });
+    return this.Survivor.findOne({ where: { name } });
+  }
+
+  async findById(id) {
+    return this.Survivor.findByPk(id);
   }
 }
 

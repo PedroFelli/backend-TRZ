@@ -1,11 +1,10 @@
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
+  up: async (queryInterface, Sequelize, DataTypes) => {
     await queryInterface.createTable('survivors', {
       id: {
-        type: Sequelize.INTEGER,
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
+        type: Sequelize.UUID,
       },
       name: {
         type: Sequelize.STRING,
@@ -19,12 +18,8 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      latitude: {
-        type: Sequelize.FLOAT,
-        allowNull: false,
-      },
-      longitude: {
-        type: Sequelize.FLOAT,
+      lonlat: {
+        type: Sequelize.GEOMETRY('POINT'),
         allowNull: false,
       },
       infected: {

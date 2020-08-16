@@ -1,6 +1,6 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('items_survivors', {
+    await queryInterface.createTable('infecteds', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -14,16 +14,12 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
       },
-      item_id: {
-        type: Sequelize.INTEGER,
+      infected_id: {
+        type: Sequelize.UUID,
         allowNull: true,
-        references: { model: 'items', key: 'id' },
+        references: { model: 'survivors', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
-      },
-      quantity: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
       },
       created_at: {
         type: Sequelize.DATE,
@@ -37,6 +33,6 @@ module.exports = {
   },
 
   down: async (queryInterface) => {
-    await queryInterface.dropTable('items_survivors');
+    await queryInterface.dropTable('infecteds');
   },
 };
