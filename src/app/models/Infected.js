@@ -1,6 +1,6 @@
 import Sequelize, { Model } from 'sequelize';
 
-class ItemSurvivor extends Model {
+class Infected extends Model {
   static init(sequelize) {
     super.init(
       {
@@ -15,4 +15,4 @@ class ItemSurvivor extends Model {
   }
 }
 
-export default ItemSurvivor;
+export default Infected;

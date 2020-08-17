@@ -11,9 +11,9 @@ routes.post('/survivors', SurvivorController.store);
 routes.get('/survivors', SurvivorController.index);
 
 routes.get('/survivors/:id/properties/', ItemsController.show);
-
 routes.get('/survivors/:id/', SurvivorController.show);
+routes.put('/survivors/:id/', SurvivorController.update);
 
-routes.post('/report', InfectedController.store);
+routes.post('/report/:id', InfectedController.store);
 
 export default routes;

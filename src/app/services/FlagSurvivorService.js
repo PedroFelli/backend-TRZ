@@ -1,5 +1,6 @@
 import InfectedRepository from '../repositories/InfectedRepository';
 import ItemSurvivorRepository from '../repositories/ItemSurvivorRepository';
+import Infected from '../models/Infected';
 
 class FlagSurvivorService {
   constructor(
@@ -11,9 +12,10 @@ class FlagSurvivorService {
   }
 
   async execute({ survivor_id, infected_id }) {
-    const checkReport = await this.infectedRepository.findBySurvivorId(
-      survivor_id
-    );
+    const checkReport = await this.infectedRepository.findBySurvivorId({
+      survivor_id,
+      infected_id,
+    });
 
     if (checkReport) {
       throw Error('You alredy report this survivor!');

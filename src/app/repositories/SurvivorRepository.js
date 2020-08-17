@@ -5,6 +5,15 @@ class SurvivorRepository {
     this.Survivor = Survivor;
   }
 
+  async update({ id, name, age, gender, latitude, longitude }) {
+    const lonlat = { type: 'Point', coordinates: [longitude, latitude] };
+
+    return this.Survivor.update(
+      { name, age, gender, lonlat },
+      { where: { id } }
+    );
+  }
+
   async store({ name, age, gender, latitude, longitude }) {
     const lonlat = { type: 'Point', coordinates: [longitude, latitude] };
 

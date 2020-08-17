@@ -9,8 +9,8 @@ class InfectedRepository {
     return this.Infected.create({ survivor_id, infected_id });
   }
 
-  async findBySurvivorId(survivor_id) {
-    return this.Infected.findOne({ where: { survivor_id } });
+  async findBySurvivorId({ survivor_id, infected_id }) {
+    return this.Infected.findOne({ where: { survivor_id, infected_id } });
   }
 
   async countReportFlag({ infected_id }) {
