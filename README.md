@@ -13,6 +13,7 @@ This project was made using the follow technologies:
 * [Javascript](https://developer.mozilla.org/pt-BR/docs/Aprender/JavaScript)
 * [Node](https://nodejs.org/en/)
 * [Express](https://expressjs.com/)
+* [PostgreSQL](https://www.postgresql.org/)
 * [PostGIS](https://postgis.net/)
 * [Sequelize ORM](https://sequelize.org/)
 * [Jest](https://jestjs.io/)
@@ -29,7 +30,7 @@ This project was made using the follow technologies:
 2. In the folder you will find a `example.env` file, duplicate it and rename it to `.env` only.
 3. In the new `.env` file, change the env variables to fit your environment `DB_*`.
 4. Run `npm install` or `yarn` to install the packages.
-5. Create a new database Postgres with PostGIS extension. I recomend  [kartoza/docker-postgis](https://github.com/kartoza/docker-postgis)
+5. Create a new database PostgreSQL with PostGIS extension. I recomend  [kartoza/docker-postgis](https://github.com/kartoza/docker-postgis)
 6. Run
 
         yarn sequelize sequelize db:migrate
@@ -44,16 +45,18 @@ This project was made using the follow technologies:
 ## Run tests
 1. Create a new database for tests.
 2. In the `.env.test` file, change the variables to suit your test database
-2. To run the tests(Linux only, to run on windows you need make manually) `npm test` or `yarn test`.
+3. To run the tests(Linux only, to run on windows you need make manually) `npm test` or `yarn test`.
 
 
-## Endpoints
-This project was made using the follow technologies:
 
 
-### Register survivor  [POST]
-Register a new survivor on the system.
+# Survivor
+
+## Register a new survivor on the system.
+
 + Request (application/json)
+
+  `POST /survivors/`
     + Body
 
             {
@@ -82,58 +85,131 @@ Register a new survivor on the system.
                     }
                   ]
             },
-    + Schema
+
++ Response 204 (application/json)
+
+## List all registered survivors
+
++ Request (application/json)
+
+  `GET /survivors/`
+    + Body (No body)
+
++ Response 200 (application/json)
+
+              [
+                {
+                  "id": "5659d4be-9e93-4fc8-b41e-7980f9d1e786",
+                  "name": "Joaozin",
+                  "age": 24,
+                  "gender": "man",
+                  "lonlat": "POINT (54.87987,25.7777)",
+                  "infected": false,
+                  "createdAt": "2020-08-17T12:22:30.285Z",
+                  "updatedAt": "2020-08-17T12:22:30.285Z"
+                },
+                {
+                  "id": "ba56b539-dce4-4623-8c27-e4ef85a04411",
+                  "name": "Alvaro",
+                  "age": 20,
+                  "gender": "man",
+                  "lonlat": "POINT (2112.04545,-878.545)",
+                  "infected": false,
+                  "createdAt": "2020-08-17T12:52:52.393Z",
+                  "updatedAt": "2020-08-17T12:52:52.393Z"
+                },
+              ]
+
+## List a specific survivor
+
++ Request (application/json)
+
+  `GET /survivors/$id`
+    + Body (No body)
+
++ Response 200 (application/json)
+
+             {
+              "id": "5bd1e912-420d-45c1-aec3-ba173cb76257",
+              "name": "Pedro Fellipe",
+              "age": 24,
+              "gender": "man",
+              "lonlat": "POINT (-90.4545,25.333)",
+              "infected": false,
+              "createdAt": "2020-08-17T12:15:13.831Z",
+              "updatedAt": "2020-08-18T18:44:12.739Z"
+            }
+
+## List a specific survivor items
+
++ Request (application/json)
+
+  `GET /survivors/$id/properties`
+    + Body (No body)
+
++ Response 200 (application/json)
+
+        [
+          {
+            "quantity": 2,
+            "Item": {
+              "name": "Fiji Water",
+              "value": 14
+            }
+          },
+          {
+            "quantity": 7,
+            "Item": {
+              "name": "Campbell Soup",
+              "value": 12
+            }
+          },
+          {
+            "quantity": 4,
+            "Item": {
+              "name": "First Aid Pouch",
+              "value": 14
+            }
+          },
+          {
+            "quantity": 4,
+            "Item": {
+              "name": "AK47",
+              "value": 14
+            }
+          }
+        ]
+
+
+## Update survivor information.
+
++ Request (application/json)
+
+  `PUT /survivors/$id`
+    + Body
 
             {
+                "name": "Joaozin",
+                "age": 18,
+                "gender": "man",
+                "latitude": "16.3287",
+                "longitude":"48.9534",
+            },
 
-              "type": "object",
-                  "properties": {
-                    "name": {
-                      "type": "string"
-                    },
-                    "age": {
-                      "type": "number"
-                    },
-                    "gender": {
-                      "type": "string"
-                    },
-                    "latitude": {
-                      "type": "number"
-                    },
-                    "longitude": {
-                      "type": "number"
-                    },
-                    "password": {
-                      "type": "string"
-                    },
-                    "items": {
-                      "type": "array"
-                        [
-                          {
-                            "item_id": {
-                              "type": "int"
-                            },
-                            "quantity": {
-                              "type": "int"
-                            },
-                            "item_id": {
-                              "type": "int"
-                            },
-                            "quantity": {
-                              "type": "int"
-                            },
-                            "item_id": {
-                              "type": "int"
-                            },
-                            "quantity": {
-                              "type": "int"
-                            },
-                          }
++ Response 204 (application/json)
 
 
-                        ]
-                    },
+# Flag
 
-                  }
-            }
+## Update survivor information.
+
++ Request (application/json)
+
+  `POST /report/$id`
+    + Body
+
+            {
+                "infected_id": "5659d4be-9e93-4fc8-b41e-7980f9d1e786",
+            },
+
 + Response 204 (application/json)

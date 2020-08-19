@@ -15,6 +15,7 @@ class CreateSurvivorService {
     const sequelize = new Sequelize(databaseConfig);
 
     const t = await sequelize.transaction();
+
     try {
       const survivor = await SurvivorRepository.store(
         {

@@ -88,7 +88,7 @@ class SurvivorController {
         longitude,
       });
 
-      return res.status(200).send();
+      return res.status(204).send();
     } catch (err) {
       return res.status(400).json(err.message);
     }
