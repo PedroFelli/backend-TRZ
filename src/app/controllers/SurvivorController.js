@@ -1,3 +1,4 @@
+import * as Yup from 'yup';
 import CreateSurvivorService from '../services/CreateSurvivorService';
 import FindSurvivorService from '../services/FindSurvivorService';
 import ListAllSurvivoslService from '../services/ListAllSurvivoslService';
@@ -6,6 +7,18 @@ import SurvivorRepository from '../repositories/SurvivorRepository';
 
 class SurvivorController {
   async store(req, res) {
+    const schema = Yup.object().shape({
+      name: Yup.string().required(),
+      age: Yup.number().required().positive().min(18),
+      gender: Yup.string().required(),
+      latitude: Yup.string().required(),
+      longitude: Yup.string().required(),
+    });
+
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json('validation fails');
+    }
+
     const { name, age, gender, latitude, longitude, items } = req.body;
 
     try {
@@ -50,6 +63,15 @@ class SurvivorController {
     const { id } = req.params;
     const { name, age, gender, latitude, longitude } = req.body;
 
+    const schema = Yup.object().shape({
+      latitude: Yup.string().required(),
+      longitude: Yup.string().required(),
+    });
+
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json('validation fails');
+    }
+
     const survivor = await Survivor.findOne({ where: { id } });
 
     if (!survivor) {
@@ -66,9 +88,9 @@ class SurvivorController {
         longitude,
       });
 
-      return res.json(x);
+      return res.status(200).send();
     } catch (err) {
-      return res.json(err.message);
+      return res.status(400).json(err.message);
     }
   }
 }

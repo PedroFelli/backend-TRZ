@@ -15,6 +15,8 @@ This project was made using the follow technologies:
 * [Express](https://expressjs.com/)
 * [PostGIS](https://postgis.net/)
 * [Sequelize ORM](https://sequelize.org/)
+* [Jest](https://jestjs.io/)
+* [Yup](https://github.com/jquense/yup)
 
 
 ## Installation
@@ -22,15 +24,116 @@ This project was made using the follow technologies:
 ### Project
 1.  Clone the git repository:
 
-          git clone https://github.com/PedroFelli
+          git clone https://github.com/PedroFelli/backend-TRZ
 
-2. In the new folder you will find a `example.env` file, duplicate it and rename it to `.env` only.
-3. in the new `.env` file, the env variables to fit your environment `DATABASE` and `APP_SECRET`.
+2. In the folder you will find a `example.env` file, duplicate it and rename it to `.env` only.
+3. In the new `.env` file, change the env variables to fit your environment `DB_*`.
 4. Run `npm install` or `yarn` to install the packages.
-8. In another window run `npm run start` or `yarn start` .
-5. Open your browser and navigate to `localhost:3333` .
+5. Create a new database Postgres with PostGIS extension. I recomend  [kartoza/docker-postgis](https://github.com/kartoza/docker-postgis)
+6. Run
 
+        yarn sequelize sequelize db:migrate
+   and
+
+        yarn sequelize db:seed:all
+
+   to install the migrations and seeders.
+7. Run `npm run start` or `yarn start` to start the server.
 
 
 ## Run tests
-To run the tests `npm test` or `yarn test`.
+1. Create a new database for tests.
+2. In the `.env.test` file, change the variables to suit your test database
+2. To run the tests(Linux only, to run on windows you need make manually) `npm test` or `yarn test`.
+
+
+## Endpoints
+This project was made using the follow technologies:
+
+
+### Register survivor  [POST]
+Register a new survivor on the system.
++ Request (application/json)
+    + Body
+
+            {
+                "name": "Joaozin",
+                "age": 18,
+                "gender": "man",
+                "latitude": "16.3287",
+                "longitude":"48.9534",
+                "items":
+                  [
+                    {
+                      "item_id": 1,
+                      "quantity": 0
+                    },
+                    {
+                      "item_id": 2,
+                      "quantity": 0
+                    },
+                    {
+                      "item_id": 3,
+                      "quantity": 3
+                    },
+                    {
+                      "item_id": 4,
+                      "quantity": 3
+                    }
+                  ]
+            },
+    + Schema
+
+            {
+
+              "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "age": {
+                      "type": "number"
+                    },
+                    "gender": {
+                      "type": "string"
+                    },
+                    "latitude": {
+                      "type": "number"
+                    },
+                    "longitude": {
+                      "type": "number"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "items": {
+                      "type": "array"
+                        [
+                          {
+                            "item_id": {
+                              "type": "int"
+                            },
+                            "quantity": {
+                              "type": "int"
+                            },
+                            "item_id": {
+                              "type": "int"
+                            },
+                            "quantity": {
+                              "type": "int"
+                            },
+                            "item_id": {
+                              "type": "int"
+                            },
+                            "quantity": {
+                              "type": "int"
+                            },
+                          }
+
+
+                        ]
+                    },
+
+                  }
+            }
++ Response 204 (application/json)

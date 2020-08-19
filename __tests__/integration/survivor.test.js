@@ -90,7 +90,7 @@ describe('Survivor', () => {
           },
         ],
       })
-      .expect(400, { error: 'Name alredy used!' });
+      .expect(400);
   });
 
   it('should be able to list survivor', async () => {

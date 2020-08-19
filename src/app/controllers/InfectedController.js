@@ -1,5 +1,4 @@
 import FlagSurvivorService from '../services/FlagSurvivorService';
-import Infected from '../models/Infected';
 
 class SurvivorController {
   async store(req, res) {
