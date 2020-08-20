@@ -201,7 +201,7 @@ This project was made using the follow technologies:
 
 # Flag
 
-## Update survivor information.
+## Flag some survivor.
 
 + Request (application/json)
 

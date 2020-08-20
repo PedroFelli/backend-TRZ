@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">42.65% </span>
+                <span class="strong">64.79% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>29/68</span>
+                <span class='fraction'>46/71</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">72.73% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>8/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">75% </span>
-                <span class="quiet">Branches</span>
+                <span class="quiet">Functions</span>
                 <span class='fraction'>3/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.67% </span>
-                <span class="quiet">Functions</span>
-                <span class='fraction'>2/3</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">42.65% </span>
+                <span class="strong">64.79% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>29/68</span>
+                <span class='fraction'>46/71</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -125,7 +125,12 @@
 <a name='L66'></a><a href='#L66'>66</a>
 <a name='L67'></a><a href='#L67'>67</a>
 <a name='L68'></a><a href='#L68'>68</a>
-<a name='L69'></a><a href='#L69'>69</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -150,25 +155,26 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -195,9 +201,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import InfectedRepository from '../repositories/InfectedRepository';
 import ItemSurvivorRepository from '../repositories/ItemSurvivorRepository';
-im<span class="branch-0 cbranch-no" title="branch not covered" >port Infected from </span>'../models/Infected';
 &nbsp;
-class FlagSurvivorService {
+c<span class="branch-0 cbranch-no" title="branch not covered" >lass FlagSurvivorSe</span>rvice {
   constructor(
     infectedRepository = InfectedRepository,
     itemSurvivorRepository = ItemSurvivorRepository
@@ -207,6 +212,10 @@ class FlagSurvivorService {
   }
 &nbsp;
   async execute({ survivor_id, infected_id }) {
+    if (survivor_id === infected_id) {
+      throw Error('You cannot report yourself!');
+    }
+&nbsp;
     const checkReport = await this.infectedRepository.findBySurvivorId({
       survivor_id,
       infected_id,
@@ -221,29 +230,29 @@ class FlagSurvivorService {
     });
 &nbsp;
     if (count === 5) {
-      throw Error('This survivor <span class="fstat-no" title="function not covered" >is already infected.');</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    if (count === 4) {</span>
-<span class="cstat-no" title="statement not covered" >      //  change owner items</span>
-<span class="cstat-no" title="statement not covered" >      const survivorItems = await this.itemSurvivorRepository.findSurvivorItems(</span>
-<span class="cstat-no" title="statement not covered" >        survivor_id</span>
-<span class="cstat-no" title="statement not covered" >      );</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >      const infectedItems = await this.itemSurvivorRepository.findSurvivorItems(</span>
-<span class="cstat-no" title="statement not covered" >        infected_id</span>
-<span class="cstat-no" title="statement not covered" >      );</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >      await Promise.all(</span>
+      throw Error('This survivor is already infected.');
+    }
+&nbsp;
+    if (count === 4) {
+      //  change owner items
+      const survivorItems = await this.itemSurvivorRepository.findSurvivorItems(
+        survivor_id
+      );
+&nbsp;
+      const infectedItems = await this.itemSurvivorRepository.findSurvivorItems(
+        infected_id
+      );
+&nbsp;
+      awa<span class="branch-0 cbranch-no" title="branch not covered" >it Promise.all(</span>
 <span class="cstat-no" title="statement not covered" >        survivorItems.map(async (item) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >          //  new quantity for the 5° survivor</span>
+          //  new quantity <span class="branch-0 cbranch-no" title="branch not covered" >for the 5° survivor</span>
 <span class="cstat-no" title="statement not covered" >          const newQuantity = await this.itemSurvivorRepository.findById(</span>
 <span class="cstat-no" title="statement not covered" >            item.id</span>
 <span class="cstat-no" title="statement not covered" >          );</span>
 <span class="cstat-no" title="statement not covered" >          newQuantity.quantity =</span>
 <span class="cstat-no" title="statement not covered" >            infectedItems[item.item_id - 1].quantity + item.quantity;</span>
 <span class="cstat-no" title="statement not covered" >          await newQuantity.save();</span>
-<span class="cstat-no" title="statement not covered" >          //  set 0 quantity for the infected</span>
+<span class="cstat-no" title="statement not covered" >          //  set 0 quantity for the i<span class="fstat-no" title="function not covered" >nfected</span></span>
 <span class="cstat-no" title="statement not covered" >          const infectedNewItems = await this.itemSurvivorRepository.findById(</span>
 <span class="cstat-no" title="statement not covered" >            infectedItems[item.item_id - 1].id</span>
 <span class="cstat-no" title="statement not covered" >          );</span>
@@ -268,7 +277,7 @@ class FlagSurvivorService {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Aug 18 2020 18:13:25 GMT-0300 (Brasilia Standard Time)
+                at Wed Aug 19 2020 20:53:16 GMT-0300 (Brasilia Standard Time)
             </div>
         </div>
         <script src="../prettify.js"></script>

@@ -14,6 +14,10 @@ class SurvivorRepository {
     );
   }
 
+  async updateStatus(id) {
+    return this.Survivor.update({ infected: true }, { where: { id } });
+  }
+
   async store({ name, age, gender, latitude, longitude }) {
     const lonlat = { type: 'Point', coordinates: [longitude, latitude] };
 

@@ -1,13 +1,16 @@
 import InfectedRepository from '../repositories/InfectedRepository';
 import ItemSurvivorRepository from '../repositories/ItemSurvivorRepository';
+import SurvivorRepository from '../repositories/SurvivorRepository';
 
 class FlagSurvivorService {
   constructor(
     infectedRepository = InfectedRepository,
-    itemSurvivorRepository = ItemSurvivorRepository
+    itemSurvivorRepository = ItemSurvivorRepository,
+    survivorRepository = SurvivorRepository
   ) {
     this.infectedRepository = infectedRepository;
     this.itemSurvivorRepository = itemSurvivorRepository;
+    this.survivorRepository = survivorRepository;
   }
 
   async execute({ survivor_id, infected_id }) {
@@ -59,6 +62,7 @@ class FlagSurvivorService {
           await infectedNewItems.save();
         })
       );
+      await this.survivorRepository.updateStatus(infected_id);
     }
 
     await this.infectedRepository.store({
