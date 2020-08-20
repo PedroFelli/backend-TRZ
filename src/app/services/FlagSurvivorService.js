@@ -31,10 +31,6 @@ class FlagSurvivorService {
       infected_id,
     });
 
-    if (count === 5) {
-      throw Error('This survivor is already infected.');
-    }
-
     if (count === 4) {
       //  change owner items
       const survivorItems = await this.itemSurvivorRepository.findSurvivorItems(
@@ -63,6 +59,10 @@ class FlagSurvivorService {
         })
       );
       await this.survivorRepository.updateStatus(infected_id);
+    }
+
+    if (count > 4) {
+      throw Error('This survivor is already infected.');
     }
 
     await this.infectedRepository.store({

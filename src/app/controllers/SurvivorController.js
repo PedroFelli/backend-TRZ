@@ -2,8 +2,7 @@ import * as Yup from 'yup';
 import CreateSurvivorService from '../services/CreateSurvivorService';
 import FindSurvivorService from '../services/FindSurvivorService';
 import ListAllSurvivoslService from '../services/ListAllSurvivoslService';
-import Survivor from '../models/Survivor';
-import SurvivorRepository from '../repositories/SurvivorRepository';
+import UpdateSurvivorService from '../services/UpdateSurvivorService';
 
 class SurvivorController {
   async store(req, res) {
@@ -64,6 +63,7 @@ class SurvivorController {
     const { name, age, gender, latitude, longitude } = req.body;
 
     const schema = Yup.object().shape({
+      age: Yup.string().required(),
       latitude: Yup.string().required(),
       longitude: Yup.string().required(),
     });
@@ -72,15 +72,9 @@ class SurvivorController {
       return res.status(400).json('validation fails');
     }
 
-    const survivor = await Survivor.findOne({ where: { id } });
-
-    if (!survivor) {
-      throw new Error('Survivor id invalid');
-    }
-
     try {
-      const x = await SurvivorRepository.update({
-        id: survivor.id,
+      await UpdateSurvivorService.execute({
+        id,
         name,
         age,
         gender,

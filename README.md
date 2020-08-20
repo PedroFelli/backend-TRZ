@@ -39,14 +39,15 @@ This project was made using the follow technologies:
         yarn sequelize db:seed:all
 
    to install the migrations and seeders.
-7. Run `npm run start` or `yarn start` to start the server.
+7. Run `npm start` or `yarn start` to start the server.
 
 
 ## Run tests
 1. Create a new database for tests.
 2. In the `.env.test` file, change the variables to suit your test database
-3. To run the tests(Linux only, to run on windows you need make manually) `npm test` or `yarn test`.
+3. To run the tests(Linux only) `npm test` or `yarn test`.
 
+   3.1 To run on windows you need to change the .env with your test database variables and run `npm testwin` or `yarn testwin`
 
 
 
@@ -125,6 +126,7 @@ This project was made using the follow technologies:
 + Request (application/json)
 
   `GET /survivors/$id`
+
     + Body (No body)
 
 + Response 200 (application/json)
@@ -213,3 +215,60 @@ This project was made using the follow technologies:
             },
 
 + Response 204 (application/json)
+
+# Reports
+
+## Percentage of infected survivors.
+
++ Request (application/json)
+
+  `GET report/infected`
+    + Body
+
++ Response 200 (application/json)
+
+      {
+        "report": {
+        "description": "Average of infected people",
+        "average_infected": 0
+        }
+      }
+
+## Percentage of non-infected survivors.
+
++ Request (application/json)
+
+  `GET report/non-infected`
+    + Body
+
++ Response 200 (application/json)
+
+      {
+        "report": {
+        "description": "Average of non-infected (healthy) people",
+        "average_healthy": 1
+         }
+      }
+
+## The average amount of each kind of resource by the survivo.
+
++ Request (application/json)
+
+  `GET report/people-inventory`
+    + Body
+
++ Response 200 (application/json)
+
+      {
+        "report": {
+        "description": "Average of the quantity of items per person (total and just non-infected) and of each item",
+        "average_items_quantity_per_person": 21.5,
+        "average_items_quantity_per_healthy_person": 21.5,
+        "average_quantity_of_each_item_per_person": {
+            "Fiji Water": 9,
+            "Campbell Soup": 6,
+            "AK47": 3.5,
+            "First Aid Pouch": 3
+          }
+        }
+      }

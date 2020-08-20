@@ -7,7 +7,12 @@
     "start": "nodemon src/server.js",
     "pretest": "NODE_ENV=test sequelize db:migrate:undo:all && NODE_ENV=test sequelize db:migrate && NODE_ENV=test sequelize db:seed:all",
     "test": "NODE_ENV=test jest",
-    "posttest": "NODE_ENV=test sequelize db:migrate:undo:all"
+    "posttest": "NODE_ENV=test sequelize db:migrate:undo:all",
+    "pretestwin": "yarn sequelize db:migrate:undo:all  && yarn sequelize db:migrate && yarn sequelize db:seed:all",
+    "testwin": "yarn jest",
+    "posttestwin": "yarn sequelize db:migrate:undo:all"
+
+
   },
   "author": "Pedro Fellipe",
   "license": "ISC",
