@@ -27,6 +27,7 @@ class ItemSurvivorRepository {
       where: {
         survivor_id,
       },
+
       attributes: ['quantity'],
       include: [{ model: Item, attributes: ['name', 'value'] }],
     });

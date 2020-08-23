@@ -20,14 +20,14 @@ module.exports = {
         {
           id: 3,
           name: 'First Aid Pouch',
-          value: 14,
+          value: 10,
           created_at: new Date(),
           updated_at: new Date(),
         },
         {
           id: 4,
           name: 'AK47',
-          value: 14,
+          value: 8,
           created_at: new Date(),
           updated_at: new Date(),
         },
